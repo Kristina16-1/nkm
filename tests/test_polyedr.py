@@ -1,4 +1,3 @@
-
 from pytest import approx
 from math import sqrt
 from shadow.polyedr import Polyedr
