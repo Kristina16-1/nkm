@@ -2,6 +2,7 @@ from pytest import approx
 from math import sqrt
 from shadow.polyedr import Polyedr
 
+
 class TestPolyedr:
 
     def test_polyedr_1(self):
@@ -24,6 +25,5 @@ class TestPolyedr:
 
     def test_polyedr_7(self):
         assert Polyedr(f"data/test7.geom").part_area() == 20000
-
 
     # python3 -B -m pytest -p no:cacheprovider tests/test_polyedr.py
