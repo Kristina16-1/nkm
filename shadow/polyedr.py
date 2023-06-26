@@ -66,7 +66,8 @@ class Edge:
         gaps = [s.subtraction(shade) for s in self.gaps]
         self.gaps = [
             s for s in reduce(add, gaps, []) if not s.is_degenerate()]
-        if len(self.gaps) == 0: self.is_invisible = True
+        if len(self.gaps) == 0:
+            self.is_invisible = True
 
     # Преобразование одномерных координат в трёхмерные
     def r3(self, t):
@@ -88,7 +89,8 @@ class Edge:
 
     # грани с частично видимыми ребрами
     def is_part(self):
-        return round(self.gaps[0].beg, 10) != 0 and round(self.gaps[-1].fin, 10) != 1
+        return round(self.gaps[0].beg, 10) != 0 \
+               and round(self.gaps[-1].fin, 10) != 1
 
 
 class Facet:
@@ -97,7 +99,7 @@ class Facet:
     # Параметры конструктора: список вершин
 
     def __init__(self, vertexes):
-        self.vertexes = vertexes #вершины
+        self.vertexes = vertexes
 
     # «Вертикальна» ли грань?
     def is_vertical(self):
@@ -119,8 +121,8 @@ class Facet:
     # Вспомогательный метод
     def _vert(self, k):
         n = (self.vertexes[k] - self.vertexes[k - 1]).cross(Polyedr.V)
-        return n * \
-               (-1.0) if n.dot(self.vertexes[k - 1] - self.center()) < 0.0 else n
+        return n * (-1.0) if n.dot(self.vertexes[k - 1] -
+                                   self.center()) < 0.0 else n
 
     # Центр грани
     def center(self):
@@ -217,7 +219,7 @@ class Polyedr:
             for e in a:
                 for i in self.facets:
                     e.shadow(i)
-            if not all(e.is_invisible for e in a) and not all(e.is_part() for e in a):
+            if not all(e.is_invisible for e in a) and not \
+                    all(e.is_part() for e in a):
                 _part_area += f.area()
         return _part_area
-
